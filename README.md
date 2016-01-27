@@ -55,6 +55,6 @@ TODO:
 
 Bugfix: remote any value from fields
 
-Add: field type validator. IsRequired, filed type(\yii\validators) and default value
+Add: field type validator. IsRequired, field type(\yii\validators) and default value
 
 Add: Functional tests
