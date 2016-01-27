@@ -6,11 +6,18 @@
 	  "data validation",
 	  "data filters"
 	],
+  	"minimum-stability": "stable",
     "authors": [
         {
             "name": "Andru Cherny",
             "email": "wir_wolf@bk.ru"
         }
     ],
-    "require": {}
+	"support": {
+	  "issues": "https://github.com/phundament/app/issues?state=open",
+	  "source": "https://github.com/phundament/app"
+	},
+    "require": {
+	  "yiisoft/yii2": "~2.0.6"
+	}
 }
