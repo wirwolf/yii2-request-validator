@@ -1,0 +1,16 @@
+{
+    "name": "wirwolf/yii2-request-validator",
+	"keywords": [
+	  "yii2",
+	  "request",
+	  "data validation",
+	  "data filters"
+	],
+    "authors": [
+        {
+            "name": "Andru Cherny",
+            "email": "wir_wolf@bk.ru"
+        }
+    ],
+    "require": {}
+}
