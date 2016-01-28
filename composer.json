@@ -14,13 +14,13 @@
         }
     ],
 	"support": {
-	  "issues": "https://github.com/phundament/app/issues?state=open",
-	  "source": "https://github.com/phundament/app"
+	  "issues": "https://github.com/wirwolf/yii2-request-validator/issues?state=open",
+	  "source": "https://github.com/wirwolf/yii2-request-validator/"
 	},
     "require": {
 	  "yiisoft/yii2": "~2.0.6"
 	},
 	"autoload": {
-	  "psr-4": {"wirwolf\\": "src/"}
+	  "psr-4": {"wirwolf\\yii2RequestValidator\\": "src/"}
 	}
 }
