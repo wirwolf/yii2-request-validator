@@ -9,6 +9,7 @@ namespace wirwolf\yii2RequestValidator;
 use yii\base\Action;
 use yii\base\Behavior;
 use yii\base\InvalidParamException;
+use yii\helpers\BaseArrayHelper;
 use yii\web\Controller;
 use yii\web\HeaderCollection;
 use yii\web\MethodNotAllowedHttpException;
@@ -56,7 +57,7 @@ class ActionValidator extends Behavior
     {
         $this->requestAction = $event->action;
         $this->requestHeaders = \Yii::$app->request->getHeaders();
-        $this->requestData = \Yii::$app->request->getBodyParams();
+        $this->requestData = BaseArrayHelper::merge(\Yii::$app->request->getBodyParams(),\Yii::$app->request->get());
         $this->requestMethod = \Yii::$app->request->getMethod();
         $this->checkAction();
         $this->checkMethod();
