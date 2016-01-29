@@ -104,9 +104,11 @@ class ActionValidator extends Behavior
      */
     private function checkRequestStructure()
     {
-        if(false == $this->currentParams['fields']) {
-            return true;
+        if(!isset($this->currentParams['fields']))
+        {
+            throw new InvalidParamException('Property fields not found in config. Mode info:https://github.com/wirwolf/yii2-request-validator/wiki/Errors#property-fields-not-found-in-config');
         }
+
         $res = ArrayHelper::arrayStructureKeyDiffKeys($this->currentParams['fields'], ArrayHelper::toArray($this->requestData));
         foreach ($res as $val) {
             if (ArrayHelper::arrayKeyExistsRecursive((string)$val, $this->currentParams['fields'])) {
@@ -120,14 +122,16 @@ class ActionValidator extends Behavior
     }
 
     /**
-     * @throws \Exception
+     * @return bool
      */
     private function checkHeaders()
     {
-        $originalStructure = $this->currentParams['headers'];
-        if(false == $originalStructure) {
+        if(!isset($this->currentParams['headers'])) {
             return true;
         }
+
+        $originalStructure = $this->currentParams['headers'];
+
         /**
          * if token validator is active
          */
