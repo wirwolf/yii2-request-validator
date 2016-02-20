@@ -92,7 +92,7 @@ class ActionValidator extends Behavior
         if (!in_array($this->requestMethod, $allowed)) {
             // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.7
             \Yii::$app->getResponse()->getHeaders()->set('Allow', implode(', ', $allowed));
-            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: ' . implode(', ', $allowed) . '.');
+            throw new MethodNotAllowedHttpException('This url can only handle the following request methods: ' . implode(', ', $allowed) . '.');
         }
         $this->currentParams = $this->currentParams[strtolower($this->requestMethod)];
         return true;
@@ -138,7 +138,7 @@ class ActionValidator extends Behavior
 
         foreach ($originalStructure as $header) {
             if (!$this->requestHeaders->get($header)) {
-                throw new InvalidParamException('Header' . $header . 'is empty', 406);
+                throw new InvalidParamException('Header \'' . $header . '\' is empty', 406);
             }
         }
         return true;
