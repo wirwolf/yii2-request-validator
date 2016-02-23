@@ -79,7 +79,7 @@ class ActionValidator extends Behavior
             $this->currentParams = $this->actions['*'];
            return true;
         } else {
-            throw new InvalidParamException('Request method '.$this->requestAction->id.' is not allowed', 405);
+            throw new InvalidParamException(\Yii::t('system','Request method \'{0}\' is not allowed',[$this->requestAction->id]), 405);
         }
     }
 
@@ -92,7 +92,7 @@ class ActionValidator extends Behavior
         if (!in_array($this->requestMethod, $allowed)) {
             // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.7
             \Yii::$app->getResponse()->getHeaders()->set('Allow', implode(', ', $allowed));
-            throw new MethodNotAllowedHttpException('This url can only handle the following request methods: ' . implode(', ', $allowed) . '.');
+            throw new MethodNotAllowedHttpException(\Yii::t('system','This url can only handle the following request methods:{0}',[ implode(', ', $allowed) ]));
         }
         $this->currentParams = $this->currentParams[strtolower($this->requestMethod)];
         return true;
@@ -116,7 +116,7 @@ class ActionValidator extends Behavior
             }
         }
         if (isset($missing)) {
-            throw new InvalidParamException('Parameters ' . implode(',', $missing) . ' not found', 400);
+            throw new InvalidParamException(\Yii::t('system','Parameters {0} not found',[ implode(',', $missing) ]), 400);
         }
         return true;
     }
@@ -138,7 +138,7 @@ class ActionValidator extends Behavior
 
         foreach ($originalStructure as $header) {
             if (!$this->requestHeaders->get($header)) {
-                throw new InvalidParamException('Header \'' . $header . '\' is empty', 406);
+                throw new InvalidParamException(\Yii::t('system','Header \'{0}\' is empty',[$header]), 406);
             }
         }
         return true;
