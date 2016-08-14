@@ -59,6 +59,9 @@ class ActionValidator extends Behavior
         $this->requestHeaders = \Yii::$app->request->getHeaders();
         $this->requestData = BaseArrayHelper::merge(\Yii::$app->request->getBodyParams(),\Yii::$app->request->get());
         $this->requestMethod = \Yii::$app->request->getMethod();
+        Igre if($this->requestMethod === 'OPTIONS') {
+            return;
+        }
         $this->checkAction();
         $this->checkMethod();
         $this->checkRequestStructure();
