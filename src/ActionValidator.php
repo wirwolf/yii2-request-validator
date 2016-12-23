@@ -12,6 +12,7 @@ use yii\base\InvalidParamException;
 use yii\helpers\BaseArrayHelper;
 use yii\web\Controller;
 use yii\web\HeaderCollection;
+use yii\web\HttpException;
 use yii\web\MethodNotAllowedHttpException;
 
 /**
@@ -21,8 +22,10 @@ use yii\web\MethodNotAllowedHttpException;
 class ActionValidator extends Behavior
 {
 
+    /**
+     * @var array
+     */
     public $actions = [];
-
 
     /**
      * Declares event handlers for the [[owner]]'s events.
@@ -50,9 +53,16 @@ class ActionValidator extends Behavior
      */
     private $requestData = [];
 
+    /**
+     * @var
+     */
     private $currentParams;
 
 
+    /**
+     * @param $event
+     * @return bool|void
+     */
     public function beforeAction($event)
     {
         $this->requestAction = $event->action;
@@ -104,6 +114,7 @@ class ActionValidator extends Behavior
 
     /**
      * @return bool
+     * @throws HttpException
      */
     private function checkRequestStructure()
     {
@@ -119,7 +130,7 @@ class ActionValidator extends Behavior
             }
         }
         if (isset($missing)) {
-            throw new HttpException(400, \Yii::t('system','Parameters {0} not found',[ implode(',', $missing) ]),400);
+            throw new HttpException(400, \Yii::t('system','Parameters {0} not found',[ implode(',', $missing) ]));
         }
         return true;
     }
