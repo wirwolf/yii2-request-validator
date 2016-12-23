@@ -119,7 +119,7 @@ class ActionValidator extends Behavior
             }
         }
         if (isset($missing)) {
-            throw new InvalidParamException(\Yii::t('system','Parameters {0} not found',[ implode(',', $missing) ]), 400);
+            throw new HttpException(400, \Yii::t('system','Parameters {0} not found',[ implode(',', $missing) ]),400);
         }
         return true;
     }
